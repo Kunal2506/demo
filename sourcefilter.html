@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>MeasureDQ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="html5gui/css/style.css">
+</head>
+
+<body ng-app="myFilter" ng-controller="sourceFilter">
+    <div class="container SourceFilterPage">
+        <div class="col-md-2 col-sm-3 col-xs-12" ng-app="" ng-init="sourceFilter = 'html5gui/images/sourceFilter.png'">
+            <span class="sourceFilter">Source Filter</span>
+            <span class="verticleLine"></span>
+            <img ng-src="{{sourceFilter}}" class="filterImg">
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+        <div class="col-md-9 col-sm-8 col-xs-12 datafilterSection">
+            <section>
+                <div class="col-md-6 col-sm-6 col-xs-12"><label>Add Filter</label></div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select class="form-control input-sm dataFilter" ng-change="filterOptions()" ng-model="addFilter" ng-options="data for data in filterData">
+                    
+                  </select>
+                </div>
+                <p class="clearfix"></p>
+                <accordion>
+                    <accordion-group ng-repeat="group in groups">
+                        <accordion-heading>
+                            {{group.title}} <i class="pull-right glyphicon glyphicon-trash" ng-click="delFilter(item)"></i>
+                        </accordion-heading>
+                        <div ng-include="group.templateUrl"></div>
+                    </accordion-group>
+                </accordion>
+            </section>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+    <script src="html5gui/js/script.js"></script>
+
+</body>
+
+</html>

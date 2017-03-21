@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>MeasureDQ</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="html5gui/css/style.css">
+       <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+   </head>
+   <body ng-app="angularApp">
+      <div ng-include="'header.html'"></div>
+      <div ng-include="'sidenav.html'"></div>
+      <div ng-controller="addDataSet" class="container">
+         <div ng-include="'breadcrumbs.html'"></div>
+         <div class="clearfix"></div>
+         <h3 class="pageHeadings">Add Dataset</h3>
+         <form>
+            <div  class="col-md-6 col-sm-6 col-xs-12">
+               <div class="form-group">
+                  <label for="datasource">Select Datasource:</label>
+                  <select ng-model="selectedDataSourrce" ng-options="data for data in dataSource" class="form-control input-sm"></select>    
+               </div>
+            </div>
+            <div  class="col-md-6 col-sm-6 col-xs-12">
+               <div class="form-group">
+                  <label for="datasource">Select Dataset Type:</label>
+                  <select ng-model="datasetType" ng-options="data for data in datasetTypeValues" class="form-control input-sm"></select>    
+               </div>
+            </div>
+            <div ng-switch="datasetType">
+               <div ng-switch-when="Dropdown" class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                     <label for="datasetTable">Dataset Table:</label>
+                     <select ng-model="datasetTable" ng-options="c for c in names " class="form-control"></select>
+                  </div>
+               </div>
+               <div ng-switch-when="fileUpload" class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="input-group">
+                     <input type="text" class="form-control" readonly>
+                     <label class="input-group-btn">
+                     <span class="btn btn-primary">
+                     Browse&hellip; <input type="file" style="display: none;" multiple>
+                     </span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+         </form>
+         <p class="clearfix"></p>
+         <p class="text-center">
+            <button type="button" ng-click="add()" class="btn btn-primary btn-sm">Add</button>
+         </p>
+         <table class="table table-bordered" >
+            <thead>
+               <tr>
+                  <th>Selected Datasource</th>
+                  <th>Select dataset Type</th>
+                  <th>Dataset Table</th>
+                  <th>Delete</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="ar in arr">
+                  <td>{{ar.selectedDataSourrce}}</td>
+                  <td>{{ar.datasetType}}</td>
+                  <td>{{ar.datasetTable}}</td>
+                  <td><button ng-click="del(ar.selectedDataSourrce)">Delete</button></td>
+               </tr>
+            </tbody>
+         </table>
+         <p class="clearfix"></p>
+         <button type="button" ng-click="addExistingData()" class="pull-right btn btn-primary btn-sm ">Create</button>
+         
+        <h3 class="pageHeadings">Existing Datasets</h3>
+        
+        <table class="table table-bordered">
+            <thead>
+               <tr>
+                  <th>Selected Datasource</th>
+                  <th>Select dataset Type</th>
+                  <th>Dataset Table</th>
+                  <th>Delete</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="ar in arr1">
+                  <td>{{ar.selectedDataSourrce}}</td>
+                  <td>{{ar.datasetType}}</td>
+                  <td>{{ar.datasetTable}}</td>
+                  <td><button ng-click="delExistingData(ar.selectedDataSourrce)">Delete</button></td>
+               </tr>
+            </tbody>
+         </table>
+          </div><!--container end-->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="html5gui/js/script.js"></script>
+   
+   </body>
+</html>
+

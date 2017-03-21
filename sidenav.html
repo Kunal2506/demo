@@ -1,0 +1,21 @@
+<div ng-controller="SidebarController">
+      <div class="sidebar" sidebar-directive="state">
+
+      
+        <a href="#" class="glyphicon glyphicon-align-justify" id="navigation-toggle" ng-click="toggleState()"></a>
+        <ul class="navigation">
+    <li ng-repeat="item in menuItems" class="navigation-items">
+        <a href="{{item.href}}">
+            <span class="title">{{item.text}}</span>
+        </a>
+        
+    </li>
+</ul>
+
+      </div>
+
+
+      
+    </div>
+
+ 
